@@ -1,7 +1,28 @@
 library togu_currency_convert;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'dart:convert';
+
+import 'package:http/http.dart';
+import 'package:togu_currency_convert/api/api.dart';
+
+class CurrencyConverter {
+  String? symbol;
+  double? value;
+
+  CurrencyConverter({this.symbol, this.value});
+
+  Future<double?> convert(
+      {required String from,
+      required String to,
+      required double amount}) async {
+    Response response = await Api().getData(from: from);
+
+    if (response.statusCode == 200) {
+      var map = jsonDecode(response.body);
+
+      double result = map['data'][to] * amount;
+
+      return double.parse((result).toStringAsFixed(2));
+    }
+  }
 }
