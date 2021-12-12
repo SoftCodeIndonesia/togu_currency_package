@@ -1,3 +1,7 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* currency converter only
+
+## 0.1.1
+
+* list currency code

@@ -4,12 +4,15 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 import 'package:togu_currency_convert/api/api.dart';
+import 'package:togu_currency_convert/global.dart';
 
 class CurrencyConverter {
   String? symbol;
   double? value;
 
   CurrencyConverter({this.symbol, this.value});
+
+  List<String> getCurrency() => listCurrency;
 
   Future<double?> convert(
       {required String from,
